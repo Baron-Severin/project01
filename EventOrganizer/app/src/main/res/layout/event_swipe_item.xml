@@ -1,52 +1,76 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="80dp"
+    android:id="@+id/EVENT_SWIPELAYOUT">
+    <!-- Bottom View Start-->
+    <LinearLayout
+        android:id="@+id/bottom_wrapper"
+        android:layout_width="wrap_content"
+        android:weightSum="1"
+        android:orientation="horizontal"
+        android:layout_height="150dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp">
 
+        <android.support.v7.widget.AppCompatImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:src="@drawable/trash"
+            android:id="@+id/trash_reveal_button"
+            android:scaleType="fitCenter" />
+
+        <!--What you want to show-->
+    </LinearLayout>
+    <!-- Bottom View End-->
+
+    <!-- Surface View Start -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:orientation="vertical"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:id="@+id/PARAM_ID_EVENT_OVERALL"
+        android:paddingBottom="20dp">
+
+
+        <TextView
+            style="@style/primaryText"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_margin="10dp"
-            android:layout_marginLeft="20dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24sp"
+            android:text="Header"
+            android:id="@+id/PARAM_ID_EVENT_HEADER"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:maxHeight="70dp"/>
+
+        <TextView
+            style="@style/primaryText"
+            android:text="Subtext1"
+            android:id="@+id/PARAM_ID_EVENT_SUBTEXT1"
             android:layout_marginRight="20dp"
-            android:id="@+id/PARAM_ID_EVENT_OVERALL"
-            android:paddingBottom="20dp">
+            android:layout_marginLeft="20dp"
+            />
 
-            <TextView
-                style="@style/primaryText"
-                android:layout_width="match_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="24sp"
-                android:text="Header"
-                android:id="@+id/PARAM_ID_EVENT_HEADER"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:maxHeight="70dp"/>
+        <TextView
+            style="@style/primaryText"
+            android:text="Subtext2"
+            android:id="@+id/PARAM_ID_EVENT_SUBTEXT2"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            />
 
-            <TextView
-                style="@style/primaryText"
-                android:text="Subtext1"
-                android:id="@+id/PARAM_ID_EVENT_SUBTEXT1"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                 />
-
-            <TextView
-                style="@style/primaryText"
-                android:text="Subtext2"
-                android:id="@+id/PARAM_ID_EVENT_SUBTEXT2"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                />
-
-        </LinearLayout>
+    </LinearLayout>
 
         <ImageView
             android:layout_width="50dp"
@@ -59,5 +83,4 @@
             android:elevation="2dp"/>
     </FrameLayout>
 
-
-</LinearLayout>
+</com.daimajia.swipe.SwipeLayout>

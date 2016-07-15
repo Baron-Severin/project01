@@ -12,9 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.daimajia.swipe.SwipeLayout;
 import com.rudie.severin.eventorganizer.CardClasses.EmptyEventCard;
 import com.rudie.severin.eventorganizer.CardClasses.EventCard;
 import com.rudie.severin.eventorganizer.CardClasses.SuperCard;
@@ -35,6 +37,7 @@ public class EventsAdapter extends BaseAdapter {
     Context mContext;
     ArrayList<SuperCard> mEventCards;
     SimpleLogger logger;
+    static boolean swiping;
 
     public EventsAdapter(Context mContext, CardHolder holder) {
         this.mContext = mContext;
@@ -73,7 +76,7 @@ public class EventsAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) mContext
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-                v = inflater.inflate(R.layout.event_list_item, null);
+                v = inflater.inflate(R.layout.event_swipe_item, null);
 
             viewHolder = new CompleteListViewHolder(v);
             v.setTag(viewHolder);
@@ -83,7 +86,7 @@ public class EventsAdapter extends BaseAdapter {
 
         populateView(viewHolder, position, type);
         CardHolder cardHolder = CardHolder.getInstance();
-        setListener(v, type, mEventCards.get(position), cardHolder);
+        setListener(v, type, mEventCards.get(position), cardHolder, viewHolder);
 
         return v;
     }
@@ -94,12 +97,18 @@ public class EventsAdapter extends BaseAdapter {
         public TextView subtext1;
         public TextView subtext2;
         public LinearLayout linearLayout;
+        public SwipeLayout swipeLayout;
+        public ImageButton revealTrash;
 
         public CompleteListViewHolder(View base) {
-                header = (TextView) base.findViewById(R.id.PARAM_ID_EVENT_HEADER);
-                subtext1 = (TextView) base.findViewById(R.id.PARAM_ID_EVENT_SUBTEXT1);
-                subtext2 = (TextView) base.findViewById(R.id.PARAM_ID_EVENT_SUBTEXT2);
-                linearLayout = (LinearLayout) base.findViewById(R.id.PARAM_ID_EVENT_OVERALL);
+            header = (TextView) base.findViewById(R.id.PARAM_ID_EVENT_HEADER);
+            subtext1 = (TextView) base.findViewById(R.id.PARAM_ID_EVENT_SUBTEXT1);
+            subtext2 = (TextView) base.findViewById(R.id.PARAM_ID_EVENT_SUBTEXT2);
+            linearLayout = (LinearLayout) base.findViewById(R.id.PARAM_ID_EVENT_OVERALL);
+            swipeLayout =  (SwipeLayout) base.findViewById(R.id.EVENT_SWIPELAYOUT);
+            revealTrash = (ImageButton) base.findViewById(R.id.trash_reveal_button);
+
+            swipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
         }
     }
 
@@ -144,18 +153,25 @@ public class EventsAdapter extends BaseAdapter {
         }
     }
 
-    private void setListener(View view, String type, final SuperCard card, final CardHolder cardHolder) {
+    private void setListener(View view, String type, final SuperCard card, final CardHolder cardHolder,
+                             CompleteListViewHolder viewHolder) {
+
 
         if (type.equals(PH.PARAM_EVENT_CARD)) {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    EventCard eventCard = (EventCard) card;
-                    CardHolder.setCurrentEvent(eventCard);
+                    if (!swiping) {
 
-                    Intent intent = new Intent(mContext, DetailsActivity.class);
-                    mContext.startActivity(intent);
+                        EventCard eventCard = (EventCard) card;
+                        CardHolder.setCurrentEvent(eventCard);
+
+                        Intent intent = new Intent(mContext, DetailsActivity.class);
+                        mContext.startActivity(intent);
+                    } else {
+                        swiping = false;
+                    }
                 }
             });
 
@@ -167,6 +183,100 @@ public class EventsAdapter extends BaseAdapter {
                 }
             });
         }
+
+        //add drag edge.(If the BottomView has 'layout_gravity' attribute, this line is unnecessary)
+        viewHolder.swipeLayout.addDrag(SwipeLayout.DragEdge.Left, view.findViewById(R.id.bottom_wrapper));
+
+        viewHolder.swipeLayout.addSwipeListener(new SwipeLayout.SwipeListener() {
+            @Override
+            public void onClose(SwipeLayout layout) {
+                //when the SurfaceView totally cover the BottomView.
+            }
+
+            @Override
+            public void onUpdate(SwipeLayout layout, int leftOffset, int topOffset) {
+                //you are swiping.
+                swiping = true;
+            }
+
+            @Override
+            public void onStartOpen(SwipeLayout layout) {
+            }
+
+            @Override
+            public void onOpen(SwipeLayout layout) {
+                //when the BottomView totally show.
+
+            }
+
+            @Override
+            public void onStartClose(SwipeLayout layout) {
+
+            }
+
+            @Override
+            public void onHandRelease(SwipeLayout layout, float xvel, float yvel) {
+                //when user's hand released.
+            }
+        });
+
+        viewHolder.revealTrash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CardHolder cardHolder = CardHolder.getInstance();
+                cardHolder.getEventHolder().remove(card);
+            }
+        });
+
     }
 }
 
+
+
+/*
+
+// begin SwipeLayout
+        SwipeLayout swipeLayout =  (SwipeLayout) findViewById(R.id.EVENT_SWIPELAYOUT);
+
+//set show mode.
+        swipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
+
+//add drag edge.(If the BottomView has 'layout_gravity' attribute, this line is unnecessary)
+        swipeLayout.addDrag(SwipeLayout.DragEdge.Left, findViewById(R.id.PARAM_ID_EVENT_OVERALL));
+
+        swipeLayout.addSwipeListener(new SwipeLayout.SwipeListener() {
+            @Override
+            public void onClose(SwipeLayout layout) {
+                //when the SurfaceView totally cover the BottomView.
+            }
+
+            @Override
+            public void onUpdate(SwipeLayout layout, int leftOffset, int topOffset) {
+                //you are swiping.
+            }
+
+            @Override
+            public void onStartOpen(SwipeLayout layout) {
+
+            }
+
+            @Override
+            public void onOpen(SwipeLayout layout) {
+                //when the BottomView totally show.
+            }
+
+            @Override
+            public void onStartClose(SwipeLayout layout) {
+
+            }
+
+            @Override
+            public void onHandRelease(SwipeLayout layout, float xvel, float yvel) {
+                //when user's hand released.
+            }
+        });
+        // end SwipeLayout
+
+
+
+ */
