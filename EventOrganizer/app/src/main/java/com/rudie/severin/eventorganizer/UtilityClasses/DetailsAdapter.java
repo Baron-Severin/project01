@@ -22,7 +22,7 @@ import java.util.ArrayList;
 /**
  * Created by erikrudie on 7/10/16.
  */
-// Inflates child views for ListView in activity_events.xml
+// Inflates child views for ListView in activity_details.xml
 public class DetailsAdapter extends BaseAdapter {
 
     Context mContext;

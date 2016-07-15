@@ -2,6 +2,7 @@ package com.rudie.severin.eventorganizer.UtilityClasses;
 
 import android.os.Parcelable;
 import android.util.Log;
+import android.widget.EditText;
 
 import com.rudie.severin.eventorganizer.CardClasses.EmptyDetailCard;
 import com.rudie.severin.eventorganizer.CardClasses.EmptyEventCard;
@@ -18,6 +19,7 @@ import com.rudie.severin.eventorganizer.CardClasses.TransitDetailCard;
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by erikrudie on 7/10/16.
@@ -27,6 +29,8 @@ public class CardHolder implements Serializable {
     ArrayList<SuperCard> mEventHolder;
     transient EventsAdapter mEventsAdapter;
     transient DetailsAdapter mDetailsAdapter;
+    transient EntryAdapter mEntryAdapter;
+    transient List<EditText> mCurrentEntryEditTexts;
 
     public static CardHolder holderInstance;
     public static EventCard currentEvent;
@@ -37,6 +41,7 @@ public class CardHolder implements Serializable {
     public CardHolder() {
         mEventHolder = new ArrayList<>();
         mEventHolder.add(new EmptyEventCard());
+        mCurrentEntryEditTexts = new ArrayList<>();
         Log.i("CardHolder: ", "new CardHolder created");
     }
 
@@ -99,6 +104,8 @@ public class CardHolder implements Serializable {
         mEventsAdapter.notifyDataSetChanged();
     }
 
+    public void notifyEntryAdapterOnly() { mEntryAdapter.notifyDataSetChanged();}
+
     public ArrayList<SuperCard> getEventHolder() {
         return mEventHolder;
     }
@@ -112,4 +119,17 @@ public class CardHolder implements Serializable {
 
         notifyEventAdapterOnly();
     }
+
+    public List<EditText> getmCurrentEntryEditTexts() {
+        return mCurrentEntryEditTexts;
+    }
+
+    public void setmCurrentEntryEditTexts(List<EditText> mCurrentEntryEditTexts) {
+        this.mCurrentEntryEditTexts = mCurrentEntryEditTexts;
+    }
+
+    public void clearCurrentEntryEditTexts() {
+        mCurrentEntryEditTexts.clear();
+    }
+
 }

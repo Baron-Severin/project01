@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        style="@style/textnoborder"
+        android:hint="@string/edittext_hint"
+        android:textColorHint="@color/edittext_text"
+        android:textColor="@color/edittext_text"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:minWidth="@dimen/edittext_width"
+        android:id="@+id/ENTRY_LIST_EDITTEXT"
+        android:singleLine="true"
+        android:layout_width="match_parent"
+        android:inputType="textCapWords" />
+
+</LinearLayout>
