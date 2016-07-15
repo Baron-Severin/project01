@@ -86,7 +86,7 @@ public class EntryAdapter extends BaseAdapter {
         }
 
         populateView(viewHolder, position);
-        List<EditText> editTexts = CardHolder.getInstance().getmCurrentEntryEditTexts();
+        List<EditText> editTexts = CardHolder.getInstance().getCurrentEntryEditTexts();
         editTexts.add(viewHolder.editText);
 //        setListener(v, parentDetail);
 

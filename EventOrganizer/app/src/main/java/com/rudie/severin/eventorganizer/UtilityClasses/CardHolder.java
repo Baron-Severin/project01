@@ -30,7 +30,8 @@ public class CardHolder implements Serializable {
     transient EventsAdapter mEventsAdapter;
     transient DetailsAdapter mDetailsAdapter;
     transient EntryAdapter mEntryAdapter;
-    transient List<EditText> mCurrentEntryEditTexts;
+
+    public static transient List<EditText> mCurrentEntryEditTexts;
 
     public static CardHolder holderInstance;
     public static EventCard currentEvent;
@@ -43,6 +44,18 @@ public class CardHolder implements Serializable {
         mEventHolder.add(new EmptyEventCard());
         mCurrentEntryEditTexts = new ArrayList<>();
         Log.i("CardHolder: ", "new CardHolder created");
+    }
+
+    public List<EditText> getCurrentEntryEditTexts() {
+        return mCurrentEntryEditTexts;
+    }
+
+    public void setCurrentEntryEditTexts(List<EditText> mCurrentEntryEditTexts) {
+        this.mCurrentEntryEditTexts = mCurrentEntryEditTexts;
+    }
+
+    public void clearCurrentEntryEditTexts() {
+        mCurrentEntryEditTexts.clear();
     }
 
     // Begin singleton cheats
@@ -118,18 +131,6 @@ public class CardHolder implements Serializable {
         mEventHolder.add(new EmptyEventCard());
 
         notifyEventAdapterOnly();
-    }
-
-    public List<EditText> getmCurrentEntryEditTexts() {
-        return mCurrentEntryEditTexts;
-    }
-
-    public void setmCurrentEntryEditTexts(List<EditText> mCurrentEntryEditTexts) {
-        this.mCurrentEntryEditTexts = mCurrentEntryEditTexts;
-    }
-
-    public void clearCurrentEntryEditTexts() {
-        mCurrentEntryEditTexts.clear();
     }
 
 }

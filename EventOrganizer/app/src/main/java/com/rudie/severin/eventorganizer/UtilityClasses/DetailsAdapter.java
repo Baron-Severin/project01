@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.rudie.severin.eventorganizer.CardClasses.EventCard;
 import com.rudie.severin.eventorganizer.CardClasses.SuperDetailCard;
 import com.rudie.severin.eventorganizer.EditDetailActivity;
+import com.rudie.severin.eventorganizer.EntryActivity;
 import com.rudie.severin.eventorganizer.R;
 
 import java.util.ArrayList;
@@ -153,7 +154,8 @@ public class DetailsAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View view) {
                     CardHolder.setCurrentDetail(detailCard);
-                    Intent intent = new Intent(mContext, EditDetailActivity.class);
+//                    Intent intent = new Intent(mContext, EditDetailActivity.class);
+                    Intent intent = new Intent(mContext, EntryActivity.class);
                     //TODO: Ask the instructors about this
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     //TODO: android.util.AndroidRuntimeException: Calling startActivity() from

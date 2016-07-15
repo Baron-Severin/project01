@@ -19,6 +19,7 @@
             android:name=".DetailsActivity"
             android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity android:name=".EditDetailActivity" />
+        <activity android:name=".EntryActivity" />
     </application>
 
 </manifest> <!-- android:windowSoftInputMode="stateHidden" -->

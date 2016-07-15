@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rudie.severin.eventorganizer.EditDetailActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:minHeight="75dp"
+        android:background="#303030">
+
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Save"
+            android:layout_weight="1"
+            android:background="@drawable/black_border"
+            android:id="@+id/EDIT_DETAIL_BUTTON_SAVE" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Cancel"
+            android:layout_weight="1"
+            android:background="@drawable/black_border"
+            android:id="@+id/EDIT_DETAIL_BUTTON_CANCEL" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Delete"
+            android:layout_weight="1"
+            android:background="@drawable/black_border"
+            android:id="@+id/EDIT_DETAIL_BUTTON_DELETE" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:minWidth="300dp"
+        >
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.4"
+            android:background="@color/colorPrimary"></FrameLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="-5dp"
+            android:id="@+id/PARAM_ID_DETAIL_OVERALL"
+            android:layout_weight="5">
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:entries="@array/EditDetailsSpinner"
+                android:prompt="@string/spinner_prompt"
+                android:id="@+id/EDIT_DETAIL_SPINNER"
+                
+                />
+
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/ENTRY_LISTVIEW"></ListView>
+
+        <!--TimeDetailCard views below, normally hidden-->
+
+            <TextView
+                style="@style/detailText"
+                android:textColor="@color/black"
+                android:text="No Date Set"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="60dp"
+                android:minWidth="@dimen/edittext_width"
+                android:id="@+id/TIME_EDIT_TEXTVIEW1"
+                android:singleLine="true"
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set Date"
+                android:id="@+id/button_set_date"
+                android:background="@drawable/black_border"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                style="@style/detailText"
+                android:textColor="@color/black"
+                android:text="No Time Set"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:minWidth="@dimen/edittext_width"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/TIME_EDIT_TEXTVIEW2"
+                android:singleLine="true"
+                android:gravity="center_horizontal"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set Time"
+                android:id="@+id/button_set_time"
+                android:background="@drawable/black_border"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal" />
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>
+
+
