@@ -88,6 +88,7 @@ public class EntryAdapter extends BaseAdapter {
         populateView(viewHolder, position);
         List<EditText> editTexts = CardHolder.getInstance().getCurrentEntryEditTexts();
         editTexts.add(viewHolder.editText);
+        CardHolder.mCurrentEntryEditTexts.add(viewHolder.editText);
 //        setListener(v, parentDetail);
 
         return v;
@@ -154,8 +155,16 @@ public class EntryAdapter extends BaseAdapter {
         }
     }
 
-//    private void setListener(View view, final SuperDetailCard detailCard) {
-//
+    private void setListener(View view, final SuperDetailCard detailCard) {
+
+        view.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                detailCard.getEnteredText().add("");
+            }
+        });
+
 //            view.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View view) {
@@ -168,6 +177,6 @@ public class EntryAdapter extends BaseAdapter {
 //                    mContext.startActivity(intent);
 //                }
 //            });
-//        }
+        }
 }
 

@@ -34,6 +34,7 @@ public class EventsActivity extends AppCompatActivity {
 
         saveFile = getApplicationContext().getFileStreamPath("CardHolder.ser");
 
+//        if (!(cardHolder == null)) {
         if (cardHolder == null) {
             try {
                 cardHolder = loadSerializedObject(saveFile);

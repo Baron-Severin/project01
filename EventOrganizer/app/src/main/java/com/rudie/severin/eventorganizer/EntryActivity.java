@@ -164,13 +164,14 @@ public class EntryActivity extends AppCompatActivity implements TimePickerDialog
     @Override
     protected void onResume() {
         super.onResume();
-        SuperDetailCard currentDetail = CardHolder.currentDetail;
-        ArrayList<String> enteredText = currentDetail.getEnteredText();
-        for (int i = 0; i < enteredText.size(); i++) {
-            if (enteredText.size() - 1 >= i) {
-                CardHolder.mCurrentEntryEditTexts.get(i).setText(enteredText.get(i));
-            }
-        }
+        entryAdapter.notifyDataSetChanged();
+//        SuperDetailCard currentDetail = CardHolder.currentDetail;
+//        ArrayList<String> enteredText = currentDetail.getEnteredText();
+//        for (int i = 0; i < enteredText.size(); i++) {
+//            if (enteredText.size() - 1 >= i) {
+//                CardHolder.mCurrentEntryEditTexts.get(i).setText(enteredText.get(i));
+//            }
+//        }
         verifyDetailSelection();
     }
 

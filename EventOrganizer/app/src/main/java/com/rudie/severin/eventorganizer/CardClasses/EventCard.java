@@ -56,11 +56,15 @@ public class EventCard extends SuperCard implements Serializable {
                 }
                 addEmptyDetailCard();
             } catch (ConcurrentModificationException e) {
+                e.printStackTrace();
                 try {
                     Thread.sleep(5);
                 } catch (Exception j) {
+                    j.printStackTrace();
                 }
                 verifyThatEmptyDetailExists();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } else {
             addEmptyDetailCard();

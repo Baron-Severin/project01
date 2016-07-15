@@ -39,6 +39,7 @@ public class CardHolder implements Serializable {
 
 
 
+
     public CardHolder() {
         mEventHolder = new ArrayList<>();
         mEventHolder.add(new EmptyEventCard());
@@ -47,6 +48,9 @@ public class CardHolder implements Serializable {
     }
 
     public List<EditText> getCurrentEntryEditTexts() {
+        if (mCurrentEntryEditTexts == null) {
+            setCurrentEntryEditTexts(new ArrayList<EditText>());
+        }
         return mCurrentEntryEditTexts;
     }
 
@@ -74,6 +78,8 @@ public class CardHolder implements Serializable {
 
     public static void setCurrentDetail(SuperDetailCard detail) {
         currentDetail = detail;
+//        CardHolder.getInstance().clearCurrentEntryEditTexts();
+//        CardHolder.getInstance().notifyEntryAdapterOnly();
     }
 
     public static EventCard getCurrentEvent() {

@@ -31,6 +31,7 @@ public abstract class SuperDetailCard extends SuperCard implements Serializable 
         setSubtext3(sub3);
         setSubtext4(sub4);
         this.enteredText = new ArrayList<>();
+        enteredText.add("");
         this.displayText = new ArrayList<>();
         this.linkedEvent = CardHolder.getCurrentEvent();
         setIconResource("@drawable/ic_open_in_new_black_24dp");
@@ -44,6 +45,7 @@ public abstract class SuperDetailCard extends SuperCard implements Serializable 
         setSubtext3("");
         setSubtext4("");
         this.enteredText = new ArrayList<>();
+        enteredText.add("");
         this.displayText = new ArrayList<>();
         this.linkedEvent = CardHolder.getCurrentEvent();
         this.date = "";
